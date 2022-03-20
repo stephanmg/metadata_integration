@@ -11,6 +11,6 @@ app.use(cors())
 
 app.listen(process.env.PORT || 8181, "localhost")
 
-app.get('/status', (req, res) => {
-    res.send({ message: 'hello world!'})
+app.get('/register', (req, res) => {
+    res.send({ message: `User ${req.body.email} was registered!`})
 })
