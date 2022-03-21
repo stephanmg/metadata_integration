@@ -3,7 +3,10 @@
 import requests, json
 from flask import Flask, redirect, url_for, request, jsonify
 from flask_cors import CORS, cross_origin
+import api
 
+# TODO: Get rid of CORS
+# TODO: Use Swagger to create documentation for REST API
 ################################################################################
 # WEB APPLICATION SETUP
 ################################################################################
@@ -11,27 +14,27 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/register": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+# TODO: Implement and contact to actual database (rdflib or mongodb)
 ################################################################################
 # PUBLIC REST API
 ################################################################################
 @app.route('/api/query/statistics/Files', methods=['GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api_query():
-    return jsonify({'message': 'Count', 'count':1337})
+    return jsonify({'message': 'Count', 'count':api.get_number_of_files_by_projects()})
 
 @app.route('/api/query/statistics/Usage', methods=['GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api_query_count():
-    return jsonify({'message': 'Count', 'count':1337333})
+    return jsonify({'message': 'Count', 'count':api.get_disk_usage_by_projects()})
 
 @app.route('/api/query/statistics/Projects', methods=['GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api_query_count2():
-    return jsonify({'message': 'Count', 'count':-100})
-
+    return jsonify({'message': 'Count', 'count':api.get_number_of_projects()})
 
 ################################################################################
-# INTERNAL REST API FOR WEB APPLICATION
+# INTERNAL USAGE OF REST API FOR WEB APPLICATION
 ################################################################################
 @app.route('/register', methods = ['POST', 'GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])

@@ -5,7 +5,10 @@ const morgan = require("morgan")
 const { response } = require("express")
 const axios = require("axios")
 const app = express()
+const api = require('./api.js')
 
+// TODO: Get rid of CORS
+// TODO: Use some tool to create documentation for REST API
 ////////////////////////////////////////////////////////////////////////////////
 // WEB APPLICATION SETUP
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,18 +21,7 @@ app.use(cors())
 ////////////////////////////////////////////////////////////////////////////////
 app.listen(process.env.PORT || 8181, "localhost")
 
-// TODO: Implement and connect with actual database
-/// TODO: All functionality used here should be extracted into an API class first / utility  class
-/// e.g. in a separate js file / module
-  
-//const helper1 = () => {/* */};
-//const helper2 = () => {/* */};
-
-//export default {
-// helper1,
-//  helper2
-//};
-
+// TODO: Implement and contact to actual database (rdflib or mongodb)
 ////////////////////////////////////////////////////////////////////////////////
 /// PUBLIC REST API
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +38,7 @@ app.get('/api/query/statistics/Usage', (_, res) => {
 })
 
 ////////////////////////////////////////////////////////////////////////////////
-// INTERNAL REST API FOR WEB APPLICATION
+// INTERNAL USAGE OF REST API FOR WEB APPLICATION
 ////////////////////////////////////////////////////////////////////////////////
 app.post('/register', (req, res) => {
     res.send({ message: `User ${req.body.email} was registered!`})
