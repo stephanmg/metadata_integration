@@ -29,7 +29,7 @@ app.get('/api/query/statistics/Files', (_, res) => {
     res.send({message: 'Count', count:1337})
 })
 
-app.get('/api/query/statistics/Project', (_, res) => {
+app.get('/api/query/statistics/Projects', (_, res) => {
     res.send({message: 'Count', count:31331337})
 })
 
