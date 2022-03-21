@@ -8,7 +8,7 @@
 <input type="password" name="password" v-model="password" placeholder="password"/>
 <br/>
 
-<button> Register </button>
+<button @click="register"> Register </button>
 </div>
 </template>
 
@@ -32,6 +32,7 @@ export default {
         email: this.email,
         password: this.password
       })
+      console.log('Register button has been clicked!')
       console.log(response)
     }
   }

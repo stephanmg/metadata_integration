@@ -2,7 +2,7 @@
 <div>
 <h1> Query database </h1>
 <div class="dropdown">
-  <button class="dropbtn">Query database with pre-defined query (SPARQL)</button>
+  <button class="dropbtn" @click="query">Query database with pre-defined query (SPARQL)</button>
   <div class="dropdown-content">
     <a href="/query/statistics?type=files">File statistics</a>
     <a href="/query/statistics?type=usage">Usage statistics</a>
