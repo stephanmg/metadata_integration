@@ -37,8 +37,6 @@ def api_query_count2():
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def register():
     data = ""
-    if request.method == 'GET':
-        print("get!")
     if request.method == 'POST':
         json_data = request.get_json(force=True)
         data = jsonify({"message": f"User {json_data['email']} was registered!" })
@@ -49,12 +47,6 @@ def register():
 def query():
     json_data = request.get_json(force=True)
     queryType = json_data['queryType']
-    myresult = 0
-    if "Files" == queryType:
-        myresult = 111
-    else:
-        myresult = 1000
-        
     response = requests.get(f'http://localhost:8181/api/query/statistics/{queryType}')
     json_data = json.loads(response.text)
     return jsonify({'mydata': json_data['count'], 'query': queryType})

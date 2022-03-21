@@ -54,16 +54,6 @@ app.post('/register', (req, res) => {
 
 app.post('/query', (req, res) => {
     var type = req.body.queryType;
-    var myresult = 0;
-    switch (type) {
-        case 'Files':
-            myresult = 111;
-            break;
-        case 'Projects':
-            myresult = 1000;
-            break
-    }
-
     axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
         res.send({ message: `Statistics of ${req.body.queryType} have been requested`, 
               mydata: myrespo.data.count})
