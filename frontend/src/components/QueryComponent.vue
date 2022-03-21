@@ -1,63 +1,45 @@
 <template>
 <div>
-<h1> Query database </h1>
-<div class="dropdown">
-  <button class="dropbtn" @click="query">Query database with pre-defined query (SPARQL)</button>
-  <div class="dropdown-content">
-    <a href="/query/statistics?type=files">File statistics</a>
-    <a href="/query/statistics?type=usage">Usage statistics</a>
-    <a href="/query/statistics?type=projects">Available projects</a>
-  </div>
-</div>
+<h1> Query metadata database </h1>
 
-<br/>
+  <select id="queryType" name="queryType" form="queryType" v-model="queryType">
+  <option value="Files"> Number of files </option>
+  <option value="Usage"> Data usage </option>
+  <option value="Projects"> List of active projects </option>
+  </select>
+
+<button @click="query"> Query now </button>
+
+<div class="response" v-html="message"/>
 
 </div>
 </template>
 
 <script>
+import QueryService from '@/services/QueryService'
+export default {
+  data () {
+    return {
+      message: null,
+      queryType: 'Files'
+    }
+  },
+  methods: {
+    async query () {
+      const response = await QueryService.query({
+        queryType: this.queryType // TODO: pack message into this as query string...
+      })
+      console.log('query in component:')
+      console.log(this.queryType)
+      console.log(response.data)
+      this.message = response.data.mydata
+    }
+  }
+}
 </script>
 
 <style scoped>
-/* Dropdown Button */
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
+.response {
+  color:  green;
 }
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
