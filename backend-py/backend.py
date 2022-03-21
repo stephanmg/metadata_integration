@@ -9,3 +9,5 @@ def index():
                     'email': 'alice'})
 
 app.run()
+
+## TODO: Replicate JS code here
