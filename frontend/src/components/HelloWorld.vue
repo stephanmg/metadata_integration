@@ -2,49 +2,30 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <!-- Main web application -->
     <ul>
       <li>
         <a
-          href="https://vuejs.org"
-          target="_blank"
+          href="/register"
         >
-          Core Docs
+          Register
         </a>
-      </li>
-      <li>
+       <li>
         <a
-          href="https://forum.vuejs.org"
-          target="_blank"
+          href="/login"
         >
-          Forum
+          Login
         </a>
-      </li>
-      <li>
+       <li>
         <a
-          href="https://chat.vuejs.org"
-          target="_blank"
+          href="/query"
         >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
+          Query builder
         </a>
       </li>
     </ul>
+
+    <!-- Resources (will be obsoleted soon) -->
     <h2>Ecosystem</h2>
     <ul>
       <li>
@@ -88,7 +69,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to metadata database access'
     }
   }
 }

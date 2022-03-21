@@ -12,6 +12,6 @@ app.listen(process.env.PORT || 8181, "localhost")
 
 // API Endpoints
 /// TODO: Design REST API 
-app.get('/register', (req, res) => {
+app.post('/register', (req, res) => {
     res.send({ message: `User ${req.body.email} was registered!`})
 })
