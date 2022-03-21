@@ -39,10 +39,20 @@ app.get('/api/query', (req, res) => {
     }
     res.send({message: 'Count', count:1337})
     // TODO: Implement (and connect with actual database!)
+    /// TODO: All functionality used here should be extracted into an API class first / utility  class
+    /// e.g. in a separate js file / module
+    
+    //const helper1 = () => {/* */};
+    //const helper2 = () => {/* */};
+
+    //export default {
+    // helper1,
+    //  helper2
+    //};
 })
 
 ////////////////////////////////////////////////////////////////////////////////
-/// INTERNAL API
+/// INTERNAL API FOR FRONTEND (using the PRIVATE API / IMPLEMENTATION)
 ////////////////////////////////////////////////////////////////////////////////
 app.post('/query', (req, res) => {
     var type = req.body.queryType;

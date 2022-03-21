@@ -27,7 +27,7 @@ export default {
   methods: {
     async query () {
       const response = await QueryService.query({
-        queryType: this.queryType // TODO: pack message into this as query string...
+        queryType: this.queryType // TODO: pack message into this as query string from SPARQL query
       })
       console.log('query in component:')
       console.log(this.queryType)
