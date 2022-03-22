@@ -32,6 +32,9 @@ export default {
       console.log('query in component:')
       console.log(this.queryType)
       console.log(response.data)
+      // TODO: Depending on queryType / JSON data being sent, parse data for appropriate plotting etc.
+      /// can use created() and mounted() to create figures as bar charts or as a graph...
+      /// Data visualization potentially will take the most work here...
       this.message = response.data.mydata
     }
   }
