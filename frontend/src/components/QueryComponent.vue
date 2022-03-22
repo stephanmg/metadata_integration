@@ -7,9 +7,17 @@
   <option value="Usage"> Data usage </option>
   <option value="Projects"> List of active projects </option>
   </select>
+<br/>
+<br/>
+  <textarea name="textArea" id="textArea" v-model="textArea"> SPARQL query here... </textarea>
+  <br/>
+  <br/>
+  <!-- TODO add a response element here -->
 
 <button @click="query"> Query now </button>
 
+<br/>
+<br/>
 <div class="response" v-html="message"/>
 
 </div>
@@ -21,7 +29,8 @@ export default {
   data () {
     return {
       message: null,
-      queryType: 'Files'
+      queryType: 'Files',
+      textArea: 'SPARQL query goes here...'
     }
   },
   methods: {
@@ -32,6 +41,7 @@ export default {
       console.log('query in component:')
       console.log(this.queryType)
       console.log(response.data)
+      console.log(this.textArea)
       // TODO: Depending on queryType / JSON data being sent, parse data for appropriate plotting etc.
       /// can use created() and mounted() to create figures as bar charts or as a graph...
       /// Data visualization potentially will take the most work here...
