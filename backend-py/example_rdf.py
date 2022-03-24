@@ -1,6 +1,6 @@
 import rdflib
 g = rdflib.Graph()
-## TODO: export to json-ld or rdf 
+## TODO: export to json-ld or rdf from Excel
 g.parse("foaf.rdf")
 
 knows_query = """
@@ -76,6 +76,10 @@ def to_json(res):
     
     return my_json_data
 
+## export simple json suitable for d3js
 print(to_json(qres))
 with open("myjsondata.json", "w") as f:
     f.write(to_json(qres))
+
+
+## TODO: integrate graph view with d3.js example from Desktop at home...
