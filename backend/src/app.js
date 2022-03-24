@@ -37,6 +37,11 @@ app.get('/api/query/statistics/Usage', (_, res) => {
     res.send({message: 'Count', count:-100})
 })
 
+app.get('/api/query/statistics/MyGDP', (_, res) => {
+    /// TODO: populate with real json data from myjsondata.json of graph representation from backend (rdflib), then in frontend populate the D3ViewVariant graph view or create a better graph view... can be general for SPARQL queries (CONSTRUCT) returning a triple store data set
+    res.send({message: 'Count', count:0})
+})
+
 ////////////////////////////////////////////////////////////////////////////////
 // INTERNAL USAGE OF REST API FOR WEB APPLICATION
 ////////////////////////////////////////////////////////////////////////////////
