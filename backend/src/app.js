@@ -38,8 +38,30 @@ app.get('/api/query/statistics/Usage', (_, res) => {
 })
 
 app.get('/api/query/statistics/MyGDP', (_, res) => {
-    /// TODO: populate with real json data from myjsondata.json of graph representation from backend (rdflib), then in frontend populate the D3ViewVariant graph view or create a better graph view... can be general for SPARQL queries (CONSTRUCT) returning a triple store data set
+    /// TODO: populate with real json data from myjsondata.json of graph 
+    /// representation from backend (rdflib), then in frontend populate
+    /// the D3ViewVariant graph view or create a better graph view... 
+    /// can be general for SPARQL queries (CONSTRUCT) returning a triple
+    /// store data set
     res.send({message: 'Count', count:0})
+})
+
+fake_data = `
+{
+  "nodes":[
+		{"name":"node1","group":1},
+		{"name":"node2","group":2},
+		{"name":"node3","group":2},
+		{"name":"node4","group":3}
+	],
+	"links":[
+		{"source":2,"target":1,"weight":1},
+		{"source":0,"target":2,"weight":3}
+	]
+}
+`
+app.get('/api/query/statistics/Graph', (_, res) => {
+    res.send(fake_data)
 })
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -50,9 +72,10 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/query', (req, res) => {
-    var type = req.body.queryType;
-    axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
-        res.send({ message: `Statistics of ${req.body.queryType} have been requested`, 
-              mydata: myrespo.data.count})
-    })
+    //var type = req.body.queryType;
+    //axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
+    //    res.send({ message: `Statistics of ${req.body.queryType} have been requested`, 
+    //          mydata: myrespo.data.count})
+    //})
+    res.send(fake_data)
 })
