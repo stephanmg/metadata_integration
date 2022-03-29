@@ -5,6 +5,7 @@ from flask import Flask, redirect, url_for, request, jsonify
 from flask_cors import CORS, cross_origin
 import api
 
+
 # TODO: Use type annotations
 # TODO: Get rid of CORS
 # TODO: Use Swagger to create documentation for REST API

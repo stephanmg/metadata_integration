@@ -8,6 +8,7 @@
   <option value="Usage"> Data usage </option>
   <option value="Projects"> List of active projects </option>
   <option value="MyGDP"> D3 View example </option>
+  <option value="Graph"> D3 Graph example </option>
   </select>
 <br/>
 <br/>
@@ -55,6 +56,7 @@
 <script>
 import QueryService from '@/services/QueryService'
 import D3View from '@/components/D3View.vue'
+import GraphView from '@/components/GraphView.vue'
 // import D3ViewVariant from './D3ViewVariant.vue'
 
 import Vue from 'vue'
@@ -75,7 +77,7 @@ Vue.component('card3', {
 
 export default {
   components: {
-    D3View
+    D3View, GraphView
     // D3ViewVariant
   },
   data () {
@@ -96,7 +98,10 @@ export default {
       })
       console.log('query in component:')
       console.log(this.queryType)
-      console.log(response.data)
+      var repodata = response.data
+      console.log("repodata")
+      console.log(repodata)
+      console.log(this.real_data)
       console.log(this.textArea)
       // TODO: Depending on queryType / JSON data being sent, parse data for appropriate plotting etc.
       /// can use created() and mounted() to create figures as bar charts or as a graph...
@@ -127,6 +132,13 @@ export default {
           this.cards.push({'card': {'real_data': this.real_data, 'title': 'blubb'}, 'card-type': 'D3View'})
           console.log('I am here!!!')
           console.log(this.real_data)
+          break
+        case 'Graph':
+          console.log("real data?")
+          console.log(response.data.nodes)
+          console.log("real data?")
+          var foo = JSON.parse(JSON.stringify(response.data.nodes));
+          this.cards.push({'card': {'real_data': response.data, 'title': 'blubb'}, 'card-type': 'GraphView'})
           break
         default:
           this.cards.push({'card': {'title': `I am a new card! (from query type ${this.queryType})`}, 'card-type': 'card1'})
