@@ -37,6 +37,7 @@
 <br/>
 <br/>
 <template v-for="(child, index) in cards">
+<!--<template v_if="cards"> -->
  <!-- abc {{child['card-type']}}-->
  <!-- {{index}}-->
   <component :is="child['card-type']" :key="index" :title="child.card.title" :real_data="child.card.real_data"/>
