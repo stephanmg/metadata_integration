@@ -1,5 +1,7 @@
 <template>
 <div>
+<h3> {{title}} </h3>
+<h4> Compiled on {{date}} </h4>
 <div id='arc' />
 </div>
 </template>
@@ -11,7 +13,8 @@ export default {
   name: 'D3View',
   props: {
     title: String,
-    real_data: Array
+    real_data: Array,
+    date: String
   },
   data () {
     return {
@@ -79,7 +82,7 @@ export default {
         .data(this.gdp)
         .enter()
         .append('text')
-        .text(d => `${d.country} -  ${d.value} Trillion ${this.title}`)
+        .text(d => `${d.country} -  ${d.value} [GiB]`)
         .attr('x', -150)
         .attr('dy', -8)
         .attr('y', (d, i) => -(i + 1) * 25)

@@ -43,8 +43,17 @@ app.get('/api/query/statistics/MyGDP', (_, res) => {
     /// the D3ViewVariant graph view or create a better graph view... 
     /// can be general for SPARQL queries (CONSTRUCT) returning a triple
     /// store data set
-    res.send({message: 'Count', count:0})
+    //res.send({message: 'Count', count:0})
+    res.send(fake_data2)
 })
+
+fake_data2 = [
+{ country: 'P01', value: 5 },
+{ country: 'P02', value: 13.4 },
+{ country: 'P03', value: 4.0 },
+{ country: 'P08', value: 4.9 },
+{ country: 'P14', value: 2.8 }
+]
 
 fake_data = `
 {
@@ -72,10 +81,19 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/query', (req, res) => {
-    //var type = req.body.queryType;
-    //axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
-    //    res.send({ message: `Statistics of ${req.body.queryType} have been requested`, 
-    //          mydata: myrespo.data.count})
-    //})
-    res.send(fake_data)
+    var type = req.body.queryType;
+
+    if (type == 'MyGDP') {
+      axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
+        res.send(myrespo.data)
+      })
+    } else if (type == 'Graph') {
+      axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
+        res.send(myrespo.data)
+        })
+    } else {
+        axios.get(`http://localhost:8181/api/query/statistics/${type}`).then(function (myrespo) {
+            res.send({ message: `Statistics of ${req.body.queryType} have been requested`, 
+              mydata: myrespo.data.count})})
+    }
 })

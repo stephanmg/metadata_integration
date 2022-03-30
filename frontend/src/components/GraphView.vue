@@ -34,8 +34,10 @@ export default {
 
       console.log('BLUUUUUUUBBBBB')
       /// TODO: WHy do we have to do this... json stringifx and parse..
+      // this.real_data = JSON.parse(JSON.stringify(this.data))
       console.log(JSON.parse(JSON.stringify(this.data)))
-      var force = d3.layout.force()
+      // var force = d3.layout.force() // layout not available, why?
+      var force = d3.forceSimulation(JSON.parse(JSON.stringify(this.data)).nodes).force() // layout not available, why?
         .gravity(0.05)
         .distance(100)
         .charge(-100)

@@ -100,7 +100,7 @@ export default {
       console.log('query in component:')
       console.log(this.queryType)
       var repodata = response.data
-      console.log("repodata")
+      console.log('repodata')
       console.log(repodata)
       console.log(this.real_data)
       console.log(this.textArea)
@@ -123,22 +123,16 @@ export default {
           this.cards.push({'card': {'title': 'I am a new card!'}, 'card-type': 'card2'})
           break
         case 'MyGDP':
-          this.real_data = [
-            { country: 'USA', value: response.data.mydata }, // TODO: Data from backend needs to be send appropriately, then use D3ViewVariant to plot graph structure of metadata database, or vuecharts or plotly.js
-            { country: 'China', value: 13.4 },
-            { country: 'Germany', value: 4.0 },
-            { country: 'Japan', value: 4.9 },
-            { country: 'France', value: 2.8 }
-          ]
-          this.cards.push({'card': {'real_data': this.real_data, 'title': 'blubb'}, 'card-type': 'D3View'})
+          console.log('stringify')
+          console.log(response.data)
+          this.cards.push({'card': {'real_data': response.data, 'title': 'Usage statistics', 'date': Date(Date.NOW)}, 'card-type': 'D3View'})
           console.log('I am here!!!')
           console.log(this.real_data)
           break
         case 'Graph':
-          console.log("real data?")
+          console.log('real data?')
           console.log(response.data.nodes)
-          console.log("real data?")
-          var foo = JSON.parse(JSON.stringify(response.data.nodes));
+          console.log('real data?')
           this.cards.push({'card': {'real_data': response.data, 'title': 'blubb'}, 'card-type': 'GraphView'})
           break
         default:
