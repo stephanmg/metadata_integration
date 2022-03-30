@@ -126,6 +126,7 @@ export default {
           console.log('stringify')
           console.log(response.data)
           /// TODO: don't use eval, might be harmful depending on where data comes from
+          // eslint-disable-next-line
           this.cards.push({'card': {'real_data': eval(response.data), 'title': 'Usage statistics', 'date': Date(Date.NOW)}, 'card-type': 'D3View'})
           console.log('I am here!!!')
           console.log(this.real_data)
@@ -134,6 +135,7 @@ export default {
           console.log('real data?')
           console.log(response.data.nodes)
           console.log('real data?')
+          /// Dynamically insert components...
           this.cards.push({'card': {'real_data': response.data, 'title': 'blubb'}, 'card-type': 'GraphView'})
           break
         default:
