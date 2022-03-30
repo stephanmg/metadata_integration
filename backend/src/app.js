@@ -56,6 +56,7 @@ fake_data2 = [
 { country: 'P14', value: 2.8 }
 ]
 
+// Note: This is real JSON data
 fake_data = `
 {
   "nodes":[
@@ -104,6 +105,7 @@ fake_data = `
 	]
 }
 `
+
 app.get('/api/query/statistics/Graph', (_, res) => {
     res.send(fake_data)
 })
