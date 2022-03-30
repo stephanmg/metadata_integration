@@ -144,7 +144,10 @@ export default {
       this.cards.pop()
     },
     queryFreeText () {
-
+      // TODO: implement this (SPARQL CONSTRUCT queries)
+      // TODO: Need visual gui (with vuetify maybe?) to construct queries
+      // (for this need ontology / controlled vocabulary to create the components 
+      // in drop down menus!)
     }
   }
 }
