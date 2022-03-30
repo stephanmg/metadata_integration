@@ -16,7 +16,9 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/register": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+# TODO: no real JSON data but string (in JS this works because its converted to an JS object!)
 fake_data2 = '''
+[
 { country: 'P01', value: 5 },
 { country: 'P02', value: 13.4 },
 { country: 'P03', value: 4.0 },
@@ -126,7 +128,7 @@ def query():
         return json.loads(response.text)
     elif 'MyGDP' == queryType:
         response = requests.get(f'http://localhost:8181/api/query/statistics/{queryType}')
-        return jsonify(json.loads(response.text))
+        return json.loads(response.text)
     else:
         response = requests.get(f'http://localhost:8181/api/query/statistics/{queryType}')
         json_data = json.loads(response.text)
