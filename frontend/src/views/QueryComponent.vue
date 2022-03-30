@@ -125,7 +125,8 @@ export default {
         case 'MyGDP':
           console.log('stringify')
           console.log(response.data)
-          this.cards.push({'card': {'real_data': response.data, 'title': 'Usage statistics', 'date': Date(Date.NOW)}, 'card-type': 'D3View'})
+          /// TODO: don't use eval, might be harmful depending on where data comes from
+          this.cards.push({'card': {'real_data': eval(response.data), 'title': 'Usage statistics', 'date': Date(Date.NOW)}, 'card-type': 'D3View'})
           console.log('I am here!!!')
           console.log(this.real_data)
           break
