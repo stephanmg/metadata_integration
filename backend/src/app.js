@@ -47,6 +47,7 @@ app.get('/api/query/statistics/MyGDP', (_, res) => {
     res.send(fake_data2)
 })
 
+// TODO: Not real JSON but array of javascript objects! need json!
 fake_data2 = [
 { country: 'P01', value: 5 },
 { country: 'P02', value: 13.4 },
