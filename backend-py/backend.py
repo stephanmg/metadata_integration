@@ -5,10 +5,9 @@ from flask import Flask, redirect, url_for, request, jsonify
 from flask_cors import CORS, cross_origin
 import api
 
-
-# TODO: Use type annotations
-# TODO: Get rid of CORS
-# TODO: Use Swagger to create documentation for REST API
+# TODO: Use Python type annotations 
+# TODO: Get rid of CORS (not necessary since front-/backend on same server)
+# TODO: Use Swagger to create documentation for our public REST API
 ################################################################################
 # WEB APPLICATION SETUP
 ################################################################################
@@ -16,8 +15,8 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/register": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-# TODO: no real JSON data but string (in JS this works because its converted to an JS object!)
-fake_data2 = '''
+# TODO: no real JSON data but string (Need to convert to proper JSON)
+fake_data_gdp = '''
 [
 { country: 'P01', value: 5 },
 { country: 'P02', value: 13.4 },
@@ -26,7 +25,9 @@ fake_data2 = '''
 { country: 'P14', value: 2.8 }
 ]
 '''
-fake_data = '''
+
+# Proper JSON, might come from the database in the future
+fake_data_graph = '''
 {
   "nodes":[
 		{"id":"P01","group":1},
@@ -75,7 +76,7 @@ fake_data = '''
 }
 '''
 
-# TODO: Implement and contact to actual database (rdflib or mongodb)
+# TODO: Implement methods stubs and connect to db (rdflib or MongoDB) and query
 ################################################################################
 # PUBLIC REST API
 ################################################################################
@@ -97,12 +98,12 @@ def api_query_count2():
 @app.route('/api/query/statistics/MyGDP', methods=['GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def my_gdp():
-    return jsonify(fake_data2)
+    return jsonify(fake_data_gdp)
 
 @app.route('/api/query/statistics/Graph', methods=['GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def my_graph():
-    return jsonify(fake_data)
+    return jsonify(fake_data_graph)
 
 
 ################################################################################
