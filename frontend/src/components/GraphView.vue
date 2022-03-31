@@ -1,6 +1,8 @@
 <template>
 <div>
-<svg id='arc'></svg>
+<h1> {{title}} </h1>
+<h2> Compiled on {{date}} </h2>
+<svg id='graphview'></svg>
 <br/>
 <br/>
 <br/>
@@ -14,7 +16,8 @@ export default {
   name: 'GraphView',
   props: {
     title: String,
-    real_data: Object
+    real_data: Object,
+    date: String
   },
   data () {
     return {
@@ -78,7 +81,7 @@ export default {
         return a === b || adjlist[a + '-' + b]
       }
 
-      var svg = d3.select('#arc').attr('width', width).attr('height', height)
+      var svg = d3.select('#graphview').attr('width', width).attr('height', height)
       var container = svg.append('g')
 
       svg.call(

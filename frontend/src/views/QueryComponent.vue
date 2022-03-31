@@ -2,7 +2,6 @@
 <template>
 <div>
 <h1> Query metadata database </h1>
-
   <select id="queryType" name="queryType" form="queryType" v-model="queryType">
   <option value="Files"> Number of files </option>
   <option value="Usage"> Data usage </option>
@@ -38,13 +37,13 @@
 <br/>
 <br/>
 <template v-for="(child, index) in cards">
-<!--<template v_if="cards"> -->
+ <!--<template v_if="cards"> -->
  <!-- abc {{child['card-type']}}-->
  <!-- {{index}}-->
-  <component :is="child['card-type']" :key="index" :title="child.card.title" :real_data="child.card.real_data"/>
-  <!--<component v-bind:is="MyComponent"> -->
-  <!--</component>-->
-  <!--<d-3-view> </d-3-view>-->
+  <component :is="child['card-type']" :key="index" :title="child.card.title" :real_data="child.card.real_data" :date='child.card.date'/>
+ <!--<component v-bind:is="MyComponent"> -->
+ <!--</component>-->
+ <!--<d-3-view> </d-3-view>-->
 </template>
 
 <br/>
@@ -95,7 +94,10 @@ export default {
   methods: {
     async query () {
       const response = await QueryService.query({
-        queryType: this.queryType // TODO: pack message into this as query string from SPARQL query
+        // TODO: pack message (from SPARQL freetext query textarea above)
+        // into this as query string (queryString) from SPARQL query in
+        // addition to the query type if queryType is textArea
+        queryType: this.queryType
       })
       console.log('query in component:')
       console.log(this.queryType)
@@ -117,6 +119,11 @@ export default {
       console.log('push card!')
       // this.cards.push({'card1': {'title': 'Card 1'}, 'card-type': 'card1'})
       // this.cards.push({'card1': {'title': 'Card 1'}, 'card-type': 'card1'})
+      var today = new Date()
+      var dd = String(today.getDate()).padStart(2, '0')
+      var mm = String(today.getMonth() + 1).padStart(2, '0')
+      var yyyy = today.getFullYear()
+      today = mm + '/' + dd + '/' + yyyy
       switch (this.queryType) {
         case 'Files':
           console.log('I am there!!!')
@@ -125,9 +132,9 @@ export default {
         case 'MyGDP':
           console.log('stringify')
           console.log(response.data)
-          /// TODO: don't use eval, might be harmful depending on where data comes from
+          /// TODO: don't use eval, might be harmful depending on where data comes from, only for delevoping right now
           // eslint-disable-next-line
-          this.cards.push({'card': {'real_data': eval(response.data), 'title': 'Usage statistics', 'date': Date(Date.NOW)}, 'card-type': 'D3View'})
+          this.cards.push({'card': {'real_data': eval(response.data), 'title': 'Usage statistics', 'date': today}, 'card-type': 'D3View'})
           console.log('I am here!!!')
           console.log(this.real_data)
           break
@@ -136,7 +143,7 @@ export default {
           console.log(response.data.nodes)
           console.log('real data?')
           /// Dynamically insert components...
-          this.cards.push({'card': {'real_data': response.data, 'title': 'blubb'}, 'card-type': 'GraphView'})
+          this.cards.push({'card': {'real_data': response.data, 'title': 'Project dependencies', 'date': today}, 'card-type': 'GraphView'})
           break
         default:
           this.cards.push({'card': {'title': `I am a new card! (from query type ${this.queryType})`}, 'card-type': 'card1'})

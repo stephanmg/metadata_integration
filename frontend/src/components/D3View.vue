@@ -2,7 +2,7 @@
 <div>
 <h3> {{title}} </h3>
 <h4> Compiled on {{date}} </h4>
-<div id='arc' />
+<div id='gdpview' />
 </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
       const h = 500
 
       const svg = d3
-        .select('#arc')
+        .select('#gpdview')
         .append('svg')
         .attr('width', w)
         .attr('height', h)
