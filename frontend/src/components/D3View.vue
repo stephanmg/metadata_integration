@@ -30,7 +30,7 @@ export default {
       const h = 500
 
       const svg = d3
-        .select('#gpdview')
+        .select('#gdpview')
         .append('svg')
         .attr('width', w)
         .attr('height', h)
