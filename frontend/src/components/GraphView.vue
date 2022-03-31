@@ -36,7 +36,8 @@ export default {
       var height = 600
       var color = d3.scaleOrdinal(d3.schemeCategory10)
 
-      var graph = JSON.parse(JSON.stringify(this.data))
+      // var graph = JSON.parse(JSON.stringify(this.data))
+      var graph = Object.assign({}, this.data)
       console.log('graph:')
       console.log(graph)
 
