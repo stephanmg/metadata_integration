@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/views/HelloWorld'
+import HomeComponent from '@/views/HomeComponent'
 import RegisterComponent from '@/views/RegisterComponent'
 import QueryComponent from '@/views/QueryComponent'
 
@@ -10,8 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Home',
+      component: HomeComponent
     },
     {
       path: '/register',
