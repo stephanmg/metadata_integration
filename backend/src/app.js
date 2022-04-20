@@ -48,7 +48,6 @@ fake_data_gdp = `
 { country: 'Z01', value: 4.8 }
 ]
 `
-
 // Note: This is real (linted) JSON data
 fake_data_graph = `
 {
@@ -99,7 +98,19 @@ fake_data_graph = `
 }
 `
 app.get('/api/query/statistics/MyGDP', (_, res) => {
-    res.send(fake_data_gdp)
+    // res.send(fake_data_gdp)
+
+	const fs = require('fs')
+	// TODO: change this
+	fs.readFile('/home/stephan/test_data.txt', 'utf8' , (err, data) => {
+	  if (err) {
+	    console.error(err)
+		res.send(fake_data_gdp)
+	    return
+	  }
+	  console.log(JSON.parse(data).projects)
+	  res.send(JSON.parse(data).projects)
+	})
 })
 
 app.get('/api/query/statistics/Graph', (_, res) => {

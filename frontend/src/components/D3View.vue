@@ -2,9 +2,30 @@
 <div>
 <h3> {{title}} </h3>
 <h4> Compiled on {{date}} </h4>
-<div id='gdpview' />
+<div id='gdpview'/>
 </div>
 </template>
+
+<style scoped>
+#gdpview {
+  font-size: xx-small;
+}
+</style>
+
+<style>
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 80px;
+  height: 28px;
+  padding: 2px;
+  color: black;
+  font: 12px sans-serif;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+</style>
 
 <script>
 import * as d3 from 'd3'
@@ -26,8 +47,8 @@ export default {
   },
   methods: {
     generateArc () {
-      const w = 500
-      const h = 500
+      const w = 1000
+      const h = 1000
 
       const svg = d3
         .select('#gdpview')
@@ -50,34 +71,45 @@ export default {
 
       const arc = d3
         .arc()
-        .innerRadius((d, i) => (i + 1) * 25)
-        .outerRadius((d, i) => (i + 2) * 25)
+        .innerRadius((d, i) => (i + 1) * 10.25)
+        .outerRadius((d, i) => (i + 2) * 10.25)
         .startAngle(angleScale(0))
         .endAngle(d => angleScale(d.value))
 
       const g = svg.append('g')
+
+      var dict = {}
+
+      // Define the div for the tooltip
+      var div = d3.select('body').append('div')
+        .attr('class', 'tooltip')
 
       g.selectAll('path')
         .data(sortedGDP)
         .enter()
         .append('path')
         .attr('d', arc)
-        .attr('fill', (d, i) => color(i))
+        .attr('fill', (d, i) => { dict[d.country] = color(i); return color(i) })
         .attr('stroke', '#FFF')
         .attr('stroke-width', '1px')
-        .on('mouseenter', function () {
+        .on('mouseover', function (event, d) {
           d3.select(this)
-            .transition()
-            .duration(200)
             .attr('opacity', 0.5)
-        })
-        .on('mouseout', function () {
-          d3.select(this)
-            .transition()
+          div.transition()
             .duration(200)
-            .attr('opacity', 1)
+            .style('opacity', 0.9)
+          div.html(d.country + '<br/>' + d.value + ' GiB')
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY - 28) + 'px')
+            .style('background', dict[d.country])
         })
-
+        .on('mouseout', function (event, d) {
+          d3.select(this)
+            .attr('opacity', 1.0)
+          div.transition()
+            .duration(500)
+            .style('opacity', 0)
+        })
       g.selectAll('text')
         .data(this.gdp)
         .enter()
@@ -85,9 +117,9 @@ export default {
         .text(d => `${d.country} -  ${d.value} [GiB]`)
         .attr('x', -150)
         .attr('dy', -8)
-        .attr('y', (d, i) => -(i + 1) * 25)
+        .attr('y', (d, i) => -(i + 1) * 10.25)
 
-      g.attr('transform', 'translate(200,300)')
+      g.attr('transform', 'translate(400,300)')
     }
   }
 }
