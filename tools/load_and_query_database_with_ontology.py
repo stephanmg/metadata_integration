@@ -1,11 +1,14 @@
 from rdflib import Graph, Namespace
 
-# Create 
+# Load metadata ontology with individuals data in RDF/XML format
 g = Graph()
+# Creates the data entries in-memory database (triple store)
 g.parse('Metadata-Ontology.owl', format="application/rdf+xml")
+# Bind namespace for our metadata ontology
 meta = Namespace('http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#')
 g.bind('meta', meta)
 
+# basic SPARQL query to find all sheets which had an experiment conducted already
 q = """
     PREFIX meta: <http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -21,6 +24,7 @@ q = """
       }
 """
 
+# query in-memory database nad print results to stdout
 res = g.query(q)
 count = 1
 for r in res:
