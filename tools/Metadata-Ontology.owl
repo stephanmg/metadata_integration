@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#"
+     xml:base="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:metadata-ontology="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#">
+    <owl:Ontology rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#createsExperiment -->
+
+    <owl:ObjectProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#createsExperiment">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:range rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#hasComponent -->
+
+    <owl:ObjectProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#hasComponent">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:range rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Comment -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Comment">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Date -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Date">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalCharacteristics -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalCharacteristics"/>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Group -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Group">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Name -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Name">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Measurement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#NumberOfReplicates -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#NumberOfReplicates">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Measurement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#PartOfCollection -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#PartOfCollection">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Sex -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Sex">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Specification -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Specification">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Tissue -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Tissue">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Title -->
+
+    <owl:DatatypeProperty rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Title">
+        <rdfs:subPropertyOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#GeneralCharacteristics"/>
+        <rdfs:domain rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#hasComponent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#MeasuredSample -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#MeasuredSample"/>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Measurement -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Measurement">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#MeasuredSample"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Sample -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#Sample">
+        <rdfs:subClassOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#MeasuredSample"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#SubSample -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#SubSample">
+        <rdfs:subClassOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#MeasuredSample"/>
+    </owl:Class>
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#SubSubSample -->
+
+    <owl:Class rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#SubSubSample">
+        <rdfs:subClassOf rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#MeasuredSample"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem1 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem1">
+        <rdf:type rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+        <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">First Experiment</Name>
+        <Sex rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</Sex>
+        <Specification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Test</Specification>
+        <Tissue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gut</Tissue>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem2">
+        <rdf:type rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem"/>
+        <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Second Experiment</Name>
+        <Sex rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</Sex>
+        <Specification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Test</Specification>
+        <Tissue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heart</Tissue>
+    </owl:NamedIndividual>
+ 
+    
+
+
+    <!-- http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General1 -->
+
+    <owl:NamedIndividual rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General1">
+        <rdf:type rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <createsExperiment rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem1"/>
+        <hasComponent rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem1"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-10-10T10:30:30</Date>
+        <Group rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stephan</Group>
+        <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S</Name>
+        <PartOfCollection rdf:datatype="http://www.w3.org/2001/XMLSchema#string">No</PartOfCollection>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A test experiment</Title>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General2">
+        <rdf:type rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#General"/>
+        <createsExperiment rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem2"/>
+        <hasComponent rdf:resource="http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#ExperimentalSystem2"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-12-10T10:30:30</Date>
+        <Group rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stephan</Group>
+        <Name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L</Name>
+        <PartOfCollection rdf:datatype="http://www.w3.org/2001/XMLSchema#string">No</PartOfCollection>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A test experiment</Title>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
