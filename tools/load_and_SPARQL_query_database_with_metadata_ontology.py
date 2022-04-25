@@ -26,8 +26,6 @@ q = """
       }
 """
 
-
-
 # query in-memory database nad print results to stdout
 res = g.query(q)
 count = 1
