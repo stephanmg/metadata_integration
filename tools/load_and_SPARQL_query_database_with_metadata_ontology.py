@@ -3,7 +3,8 @@ from rdflib import Graph, Namespace
 # Load metadata ontology with individuals data in RDF/XML format
 g = Graph()
 # Creates the data entries in-memory database (triple store)
-g.parse('Metadata-Ontology.owl', format="application/rdf+xml")
+filename = 'Metadata-Ontology2.owl'
+g.parse(filename, format="application/rdf+xml")
 # Bind namespace for our metadata ontology
 meta = Namespace('http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#')
 g.bind('meta', meta)
@@ -13,12 +14,13 @@ q = """
     PREFIX meta: <http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     
-    SELECT ?aname ?atitle ?adate ?atissue
+    SELECT ?aname ?atitle ?adate ?atissue ?x ?y ?z
        WHERE { 
             ?general meta:createsExperiment ?experiment .
             ?general meta:Name ?aname .
             ?general meta:Title ?atitle .
             ?general meta:Date ?adate .
+            ?x meta:hasDiet ?y . 
             ?experiment meta:Tissue ?atissue .
             FILTER (?atissue='Heart'^^xsd:string)
       }
