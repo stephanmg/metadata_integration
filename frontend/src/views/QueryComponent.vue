@@ -23,8 +23,6 @@
 <h2> Or: With custom SPARQL queries using the OWL Metadata Ontology </h2>
   <textarea name="textArea" id="textArea" v-model="textArea">
   </textarea>
-  <br/>
-  <br/>
   <!-- TODO add a response element here -->
   <!-- TODO: use v-for element -->
   <!-- depening on textArea or queryType decide which component to insert in v-for loop -->
@@ -35,11 +33,14 @@
     and transmit data with plot type to frontend, which then in turn will insert the
     appropritate vue component with d3js potentially-->
 
+<h5> Please find more (pre-defined) custom SPARQL query examples in the documentation </h5>
+<br/>
 <button @click="queryFreeText"> Query now </button>
 <hr style='width: 50%'>
 <br/>
 <h3> Result is </h3>
 <div style='display: table; margin-right: auto; margin-left: auto;' v-html='messageFromSPARQLQuery'></div>
+<hr style='width: 50%'>
 <br/>
 <br/>
 <br/>
@@ -62,7 +63,6 @@
 <p>TODO: Add a Visual SPARQL query builder using Metadata-Ontology file in OWL format</p>
 </div>
 </template>
-
 
 <script>
 import QueryService from '@/services/QueryService'
@@ -223,5 +223,11 @@ textarea {
   font-size: x-small;
   height: 150px;
   width: 530px;
+  margin: 0px;
+  padding: 0px;
+}
+h5 {
+  padding: 0px;
+  margin: 0px;
 }
 </style>
