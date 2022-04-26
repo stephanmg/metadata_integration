@@ -119,6 +119,8 @@ def sparql():
     # basic SPARQL query to find all sheets which had an experiment conducted already
     res = g.query(q)
     json_data = []
+    # TODO: depending on result (res) -> need to partition the data appropriately and transmit back to frontend for visualization
+    # TODO: encode in json_data the type of visualization required in frontend, frontend can access json_data by response.data.mydata['visualization_type']
     for r in res:
         json_data.append({'name' : f'{r.aname}', 'title': f'{r.atitle}', 'tissue': f'{r.atissue}'})
         json_data.append({'name' : f'{r.aname}', 'title': f'{r.atitle}', 'tissue': f'{r.atissue}'})
