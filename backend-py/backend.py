@@ -105,6 +105,27 @@ def my_gdp():
 def my_graph():
     return jsonify(fake_data_graph)
 
+# TODO: Add /api/query/experiments?name=Example?tissue=Heart as other API query points
+@app.route('/api/query/sparql', methods=['POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+def sparql():
+    json_data = request.get_json(force=True)
+    q = json_data['queryText']
+    from rdflib import Graph, Namespace
+    g = Graph()
+    g.parse('Metadata-Ontology.owl', format="application/rdf+xml")
+    meta = Namespace('http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#')
+    g.bind('meta', meta)
+    # basic SPARQL query to find all sheets which had an experiment conducted already
+    res = g.query(q)
+    json_data = []
+    for r in res:
+        json_data.append({'name' : f'{r.aname}', 'title': f'{r.atitle}', 'tissue': f'{r.atissue}'})
+        json_data.append({'name' : f'{r.aname}', 'title': f'{r.atitle}', 'tissue': f'{r.atissue}'})
+    print("returning json")
+    print(json_data)
+    #return json_data
+    return jsonify(json_data)
 
 ################################################################################
 # INTERNAL USAGE OF REST API FOR WEB APPLICATION
@@ -123,13 +144,19 @@ def register():
 def query():
     json_data = request.get_json(force=True)
     queryType = json_data['queryType']
-
     if 'Graph' == queryType:
         response = requests.get(f'http://localhost:8181/api/query/statistics/{queryType}')
         return json.loads(response.text)
     elif 'MyGDP' == queryType:
         response = requests.get(f'http://localhost:8181/api/query/statistics/{queryType}')
         return json.loads(response.text)
+    elif 'SPARQL' == queryType:
+        response = requests.post(f'http://localhost:8181/api/query/sparql', json=json_data)
+        print("response.text:")
+        print(response.text)
+        mydata = json.loads(response.text)
+        #mydata = sparql(queryText)
+        return jsonify({'mydata' : mydata, 'query' : queryType})
     else:
         response = requests.get(f'http://localhost:8181/api/query/statistics/{queryType}')
         json_data = json.loads(response.text)

@@ -2,6 +2,8 @@
 <template>
 <div>
 <h1> Query metadata database </h1>
+<hr style='width: 30%'>
+<h2> With one of the following pre-defined queries: </h2>
   <select id="queryType" name="queryType" form="queryType" v-model="queryType">
   <option value="Files"> Number of files </option>
   <option value="Usage"> Data usage </option>
@@ -17,7 +19,10 @@
 
 <br/>
 <br/>
-  <textarea name="textArea" id="textArea" v-model="textArea"> SPARQL query here... </textarea>
+<hr style='width: 30%'>
+<h2> Or: With custom SPARQL queries using the OWL Metadata Ontology </h2>
+  <textarea name="textArea" id="textArea" v-model="textArea">
+  </textarea>
   <br/>
   <br/>
   <!-- TODO add a response element here -->
@@ -31,7 +36,10 @@
     appropritate vue component with d3js potentially-->
 
 <button @click="queryFreeText"> Query now </button>
-
+<hr style='width: 50%'>
+<br/>
+<h3> Result is </h3>
+<div style='display: table; margin-right: auto; margin-left: auto;' v-html='messageFromSPARQLQuery'></div>
 <br/>
 <br/>
 <br/>
@@ -48,10 +56,13 @@
 
 <br/>
 <br/>
-<h3> Response from backend </h3>
+<h3> Debugging response from backend </h3>
 <div class="response" v-html="message"/>
+<hr style='width: 100%'>
+<p>TODO: Add a Visual SPARQL query builder using Metadata-Ontology file in OWL format</p>
 </div>
 </template>
+
 
 <script>
 import QueryService from '@/services/QueryService'
@@ -84,7 +95,20 @@ export default {
     return {
       message: null,
       queryType: 'Files',
-      textArea: 'SPARQL query goes here...',
+      textArea: `
+        PREFIX meta: <http://localhost/stephanmg/ontologies/2022/3/metadata-ontology#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        SELECT ?aname ?atitle ?adate ?atissue
+          WHERE {
+                ?general meta:createsExperiment ?experiment .
+                ?general meta:Name ?aname .
+                ?general meta:Title ?atitle .
+                ?general meta:Date ?adate .
+                ?experiment meta:Tissue ?atissue .
+                FILTER (?atissue='Heart'^^xsd:string)
+          }
+      `,
+      messageFromSPARQLQuery: '',
       cards: [
         // {'card1': {'title': 'Card 1'}, 'card-type': 'card1'}
       ],
@@ -153,7 +177,33 @@ export default {
     unquery () {
       this.cards.pop()
     },
-    queryFreeText () {
+    async queryFreeText () {
+      console.log('blubbblubb')
+      const response = await QueryService.query({
+        queryType: 'SPARQL',
+        queryText: this.textArea
+      })
+      console.log('query free text!')
+      console.log(response)
+
+      const array = response.data.mydata
+      console.log(array)
+      var myhtml = `
+        <table>
+        <tr>
+        <th> Experimentator </th>
+        <th> Title </th>
+        <th> Tissue </th>
+        </tr>
+      `
+      array.forEach(function (item, index) {
+        myhtml = myhtml.concat(`<tr> <td> ${item.name} </td> <td> ${item.title} </td> <td> ${item.tissue} </td> </tr>`)
+        console.log(item, index)
+      })
+      myhtml = myhtml.concat(`</table>`)
+      this.messageFromSPARQLQuery = myhtml
+      this.message = response.data.query
+
       // TODO: implement this (SPARQL CONSTRUCT queries)
       // TODO: Need visual gui (with vuetify maybe?) to construct queries
       // (for this need ontology / controlled vocabulary to create the components
@@ -166,5 +216,12 @@ export default {
 <style scoped>
 .response {
   color:  green;
+}
+</style>
+<style>
+textarea {
+  font-size: x-small;
+  height: 150px;
+  width: 530px;
 }
 </style>
